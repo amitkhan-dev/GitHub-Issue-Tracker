@@ -15,7 +15,7 @@ signInBtn.addEventListener('click', function(){
 
     // window.location.assign("/home.html")
     // Window.location.replace("/home.html")
-    window.location.href = ("/index.html");
+    window.location.href = ("dashboard.html");
   }else {
     alert('Sign in Fallied')
     return;

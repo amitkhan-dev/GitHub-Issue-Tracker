@@ -1,31 +1,53 @@
 const cardContaine = document.getElementById('card-container');
+const loadingSpinner = document.getElementById('loadingSpinner');
+const issueCountElement = document.getElementById('issue-count');
+const searchInput = document.getElementById('search-input');
+
+let allIssuses = [];
+
+
 async function loadIssue (){
-  
+  loadingSpinner.classList.remove("hidden");
+  loadingSpinner.classList.add("flex");
+
+
 // const url= fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
 // url.then((res)=> res.json())
 // .then((data)=> console.log(data))
 // .catch((e)=> console.log(e));
 
 // asyn await
+
 const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
 
 const result = await res.json();
+allIssuses = result.data;
+
+loadingSpinner.classList.add("hidden");
+loadingSpinner.classList.remove("flex");
 loadDispaly(result.data);
+loadIssue (allIssuses);
+
 
 
 }
-async function loadDispaly (issues){
+
+
+
+function loadDispaly (issues){
   cardContaine.innerHTML=""
+
   issues.forEach(data => {
-  console.log(data);
+  // console.log(data);
 
 // bug----
   let labelsHTML = ''; 
   data.labels.forEach(label => {
-  labelsHTML+= `<div  class="badge  ${label === 'bug' ? ' bg-red-100    text-red-500 ' : label === 'enhancement' ? 'bg-green-100    text-green-500':' bg-yellow-100 text-yellow-600'} gap-1 px-3 py-3">
-    <i class="fa-solid ${label === 'bug' ? 'fa-bug' : label === 'enhancement' ? 'fa-star':'fa-life-ring'} "></i>
-    <span class="text-[9px] font-bold  uppercase">${label}</span>
-  </div>`;
+  labelsHTML+= `
+          <div  class="badge   ${label === 'bug' ? ' bg-red-100      text-red-500 ' : label === 'enhancement' ? 'bg-green-100    text-green-500':' bg-yellow-100 text-yellow-600'} gap-1 px-3 py-3">
+          <i class="fa-solid ${label === 'bug' ? 'fa-bug' : label === 'enhancement' ? 'fa-star':'fa-life-ring'} "></i>
+          <span class="text-[6px] font-bold  uppercase">${label}</span>
+          </div>`;
 
 });
 
@@ -33,8 +55,10 @@ async function loadDispaly (issues){
   const dateObj = new Date(data.createdAt); 
   const formattedDate = dateObj.toLocaleDateString();
 
-  const card = document.createElement('div')
-card.className ="card  bg-base-100 shadow-sm border-t-4 border-gray-100  border-t-green-400"
+  const borderColor = data.status === 'open' ? 'border-t-green-400' : 'border-t-purple-500';
+
+  const card = document.createElement('div');
+  card.className =`card  bg-base-100 shadow-sm border-t-4 border-gray-100  ${borderColor}`
 
 
 card.innerHTML=`
@@ -49,7 +73,7 @@ card.innerHTML=`
           <h2 class="text-slate-800 font-bold text-lg leading-tight mb-2">${data.title}</h2>
           <p class="text-slate-500 text-sm mb-4 line-clamp-2  ">${data.description}</p>
           <div class="flex gap-1 mb-4">
-          <div class="badge  gap-1 px-2 py-3" text-[14px]>${labelsHTML}
+          <div class=" flex  gap-1 px-2 py-3" text-[9px]>${labelsHTML}
           </div>
           </div>
         </div>
@@ -58,9 +82,13 @@ card.innerHTML=`
           <p class="text-slate-400 text-sm">${data.assignee}</p>
           <p class="text-slate-400 text-sm mt-1">${formattedDate}</p>
         </div>`
+
+        const btn =document.querySelectorAll('.filter-btn');
+        btn.onclick = ()=> selectissues (data.status)
+        console.log(btn)
 cardContaine.appendChild(card)
 });
-
 }
+
 
 loadIssue ();
