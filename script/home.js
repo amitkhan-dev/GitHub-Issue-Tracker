@@ -90,6 +90,51 @@ card.innerHTML=`
           <p class="text-slate-400 text-sm mt-1">${formattedDate}</p>
         </div>`
 
+// ------------modal-----------
+card.onclick = () => {
+    const modalContent = document.getElementById('modal-content');
+    const modal = document.getElementById('issue_details_modal');
+
+    modalContent.innerHTML = `
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-12 h-12 rounded-full ${data.status === 'open' ? 'bg-green-100' : 'bg-purple-100'} flex items-center justify-center">
+          <img src="${data.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png'}" class="w-8">
+        </div>
+        <div>
+          <h3 class="font-bold text-2xl text-slate-800">${data.title}</h3>
+          
+        </div>
+      </div>
+
+      <div class="space-y-4 border-t border-gray-100 pt-4">
+        <p class="text-lg"><span class="font-bold text-slate-700">Description:</span> <br>
+        <span class="text-slate-600 text-base">${data.description}</span>
+        </p>
+        
+        <div class="grid grid-cols-2 gap-4">
+            <p class="font-bold"> Status:
+              <span class="badge ${data.status === 'open' ? 'bg-green-100 text-green-600' : 'bg-purple-100 text-purple-600'} border-none px-4 py-3 uppercase font-bold text-xs">${data.status}</span>
+            </p>
+            <p class="font-bold" >Priority: 
+              <span class="badge ${data.priority === 'high' ? 'bg-red-50 text-red-500': data.priority === 'medium'? 'bg-[#fff6d1] text-[#f59e0b]': 'bg-[#eeeff2] text-[#9ca3af]'}  font-bold text-xs px-3 py-3 uppercase">
+            ${data.priority}</span>
+            </p>
+            <p class= "font-bold">Author: <span class="text-slate-700 font-semibold">${data.assignee}</span></p>
+            <p >Created Date: <span class="text-slate-500">${formattedDate}</span></p>
+        </div>
+
+        <div class="mt-4 font-bold">
+            Labels:
+            <div class="flex gap-2 mt-2">
+                ${labelsHTML}
+            </div>
+        </div>
+      </div>
+    `;
+
+    modal.showModal();
+};
+
 cardContaine.appendChild(card)
 });
 }

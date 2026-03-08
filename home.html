@@ -46,9 +46,9 @@
   <main>
     <section class="w-10/12 mx-auto mb-5">
       <div class="navbar bg-base-100 rounded-lg shadow-sm gap-2">
-        <button onclick="filterIssue('all')" id="btn-All" class=" filter-btn btn  btn-primary">All</button>
-        <button onclick="filterIssue('open')" id="btn-open" class=" filter-btn btn btn-soft btn-primary">Open</button>
-        <button onclick="filterIssue('cloesd')" id="btn-closed" class="filter-btn btn btn-soft btn-primary">Closed</button>
+        <button onclick="" id="btn-All" class=" filter-btn btn  btn-primary">All</button>
+        <button onclick="" id="btn-open" class=" filter-btn btn btn-soft btn-primary">Open</button>
+        <button onclick="" id="btn-closed" class="filter-btn btn btn-soft btn-primary">Closed</button>
       </div>
     </section>
 
@@ -111,21 +111,20 @@
 
       <!-- modal -->
     
-      <!-- Open the modal using ID.showModal() method -->
-<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
-<dialog id="my_modal_1" class="modal">
-  <div class="modal-box">
-    <h3 class="text-lg font-bold">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
-      
+
+
+    <dialog id="issue_details_modal" class="modal">
+      <div class="modal-box w-11/12 max-w-2xl bg-white">
+        <div id="modal-content">
+        </div>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn btn-error text-white">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+  
     </section>
     
     
