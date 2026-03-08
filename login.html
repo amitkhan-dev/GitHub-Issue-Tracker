@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Github Issue Tracker| Sign In </title>
+  <!-- Tailwind & DaisyUI link -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google font link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- Favicon  -->
+<link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
+</head>
+<body >
+  <section class="min-h-screen max-w-md  bg-base-100 mx-auto shrink-0 shadow-2xl my-4 rounded-lg " >
+    <div class="logo  mx-auto pt-8 flex flex-col items-center text-center">
+        <div>
+          <img class="mb-5" src="./assets/github-logo.png" alt="">
+        </div>
+        <h2 class="text-2xl font-bold">GitHub Issues Tracker</h2>
+        <p class="text-[#64748b]">Sign in to manage your issues</p>
+    </div>
+    <div class="form">
+      <div class="card  w-full max-w-sm mx-auto ">
+        <div class="card-body   ">
+          <fieldset cglass="fieldset">
+          <label class="label text-[#1f2937] text-[16px] font-medium">Username</label>
+          <input id="input-name" type="email" class="input w-full mb-3" placeholder="Enter username " />
+          <label class="label text-[#1f2937] text-[16px] font-medium">Password</label>
+          <input id="input-password" type="password" class="input w-full mb-3 " placeholder="Password" />
+          <button id="signin-btn" class="btn btn-primary mt-4 w-full mb-3">Sign In</button>
+          </fieldset>
+        <div class="text-center space-y-5">
+          <p class="text-[16px] text-[#1f2937]">OR</p>
+          <p class="text-[#64748b]">Demo Credentials:</p>
+          <div class="bg-[#f8fafc] p-5">
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+        </div>
+      </div>
+        
+        
+      </div>
+  </div>
+</div>
+
+  </section>
+<script src="./script/login.js"></script>
+<script src="./script/home.js"></script>
+</body>
+</html>

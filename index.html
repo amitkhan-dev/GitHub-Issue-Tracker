@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Github Issue Tracker| Sign In </title>
+  <title>Github Issue Tracker | Home page</title>
   <!-- Tailwind & DaisyUI link -->
   <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -13,44 +13,129 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
+<!-- font awesome link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <!-- Favicon  -->
 <link rel="shortcut icon" href="./assets/github-logo.png" type="image/x-icon">
 </head>
-<body >
-  <section class="min-h-screen max-w-md  bg-base-100 mx-auto shrink-0 shadow-2xl my-4 rounded-lg " >
-    <div class="logo  mx-auto pt-8 flex flex-col items-center text-center">
-        <div>
-          <img class="mb-5" src="./assets/github-logo.png" alt="">
+<body class="bg-[#f8fafc]">
+  <header>
+    <nav class="bg-[#fff] mb-10">
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class=" flex items-center gap-2 flex-1">
+          <img src="./assets/github-logo.png" class="w-9" alt="github-logo">
+          <p class="font-semibold text-[24px]">GitHub Issues Tracker</p>
         </div>
-        <h2 class="text-2xl font-bold">GitHub Issues Tracker</h2>
-        <p class="text-[#64748b]">Sign in to manage your issues</p>
+        <div class="flex gap-2">
+          <!-- <i class="fa-thin fa-magnifying-glass"></i>
+          <input type="text"  placeholder="Search issue" class="input input-bordered w-24 md:w-auto" /> -->
+          <label class="input">
+            <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/    svg"viewBox="0 0 24 24"><g stroke-linejoin="round"stroke-linecap="round"stroke-width="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+            </g>
+            </svg>
+            <input type="search" required placeholder="Search" />
+          </label>
+          <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>Primary</button>
+        </div>
+      </div>
     </div>
-    <div class="form">
-      <div class="card  w-full max-w-sm mx-auto ">
-        <div class="card-body   ">
-          <fieldset cglass="fieldset">
-          <label class="label text-[#1f2937] text-[16px] font-medium">Username</label>
-          <input id="input-name" type="email" class="input w-full mb-3" placeholder="Enter username " />
-          <label class="label text-[#1f2937] text-[16px] font-medium">Password</label>
-          <input id="input-password" type="password" class="input w-full mb-3 " placeholder="Password" />
-          <button id="signin-btn" class="btn btn-primary mt-4 w-full mb-3">Sign In</button>
-          </fieldset>
-        <div class="text-center space-y-5">
-          <p class="text-[16px] text-[#1f2937]">OR</p>
-          <p class="text-[#64748b]">Demo Credentials:</p>
-          <div class="bg-[#f8fafc] p-5">
-            <p>Username: admin</p>
-            <p>Password: admin123</p>
+    </nav>
+  </header>
+
+  <main>
+    <section class="w-10/12 mx-auto mb-5">
+      <div class="navbar bg-base-100 rounded-lg shadow-sm gap-2">
+        <button class="btn  btn-primary">All</button>
+        <button class="btn btn-soft btn-primary">Open</button>
+        <button class="btn btn-soft btn-primary">Close</button>
+      </div>
+    </section>
+
+    <section class="w-10/12 mx-auto py-3">
+      <div class=" flex justify-between items-center navbar bg-base-100 rounded-lg shadow-sm gap-2">
+        <div class="flex justify-between items-center gap-3">
+          <img src="./assets/Aperture.png" alt="">
+          <div>
+            <p class="text-[20px] font-semibold">50 Issues</p>
+            <p class="text-[#64748b]">Track and manage your project issues</p>
+          </div>
+        </div>
+        <div class="flex gap-2 items-center  ">
+        <p class="w-3 h-3 bg-[#00a96e] rounded-full "></p>
+        <p>Open</p>
+        <p class="w-3 h-3 bg-[#a855f7] rounded-full "></p>
+        <p>Close</p>
+      </div>
+      </div>
+      
+    </section>
+
+    <section id="card-container" class="w-10/12 mx-auto grid grid-cols-4 gap-3">
+      <!-- card 1 -->
+      <!-- <div id="card-info" class="card  bg-base-100 shadow-sm border-t-4 border-gray-100  border-t-green-400">
+        <div class="p-5">
+          <div class="flex justify-between  mb-3">
+            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+              <img src="./assets/Open-Status.png" alt="">
+            </div>
+            <span class="badge bg-red-50 text-red-500 border-none font-bold text-xs px-3 py-3">HIGH</span>
+          </div>
+          <h2 class="text-slate-800 font-bold text-lg leading-tight mb-2">Fix Navigation Menu On Mobile Devices</h2>
+          <p class="text-slate-500 text-sm mb-4 line-clamp-2  ">The navigation menu doesn't collapse properly on mobile devices</p>
+          <div class="flex gap-2 mb-4">
+          <div class="badge bg-red-50 text-red-500 border border-red-100 gap-1 px-3 py-3">
+            <i class="fa-solid fa-bug text-[10px]"></i>
+            <span class="text-xs font-bold ">Bug</span>
+          </div>
+        <div class="badge bg-yellow-50 text-yellow-600 border border-yellow-100 gap-1 px-3 py-3">
+        <i class="fa-solid fa-life-ring text-[10px]"></i>
+        <span class="text-xs font-bold uppercase">Help Wanted</span>
+        </div>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-100 p-5 pt-4">
+          <p class="text-slate-400 text-sm">#1 by john_doe</p>
+          <p class="text-slate-400 text-sm mt-1">1/15/2024</p>
+        </div>
+      </div> -->
+
+      <!-- card 2 -->
+      <!-- <div class="card flex  bg-base-100 shadow-sm border-t-4 border-gray-100  border-t-red-400">
+        <div class="p-5">
+          <div class="flex justify-between  mb-3">
+            <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+              <img src="./assets/Open-Status.png" alt="">
+
+            </div>
+            <span class="badge bg-red-50 text-red-500 border-none font-bold text-xs px-3 py-3">HIGH</span>
+          </div>
+          <h2 class="text-slate-800 font-bold text-lg leading-tight mb-2">Fix Navigation Menu On Mobile Devices</h2>
+          <p class="text-slate-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices</p>
+          <div class="flex gap-2 mb-4">
+          <div class="badge bg-red-50 text-red-500 border border-red-100 gap-1 px-3 py-3">
+            <i class="fa-solid fa-bug text-[10px]"></i>
+            <span class="text-xs font-bold ">Bug</span>
+          </div>
+        <div class="badge bg-yellow-50 text-yellow-600 border border-yellow-100 gap-1 px-3 py-3">
+        <i class="fa-solid fa-life-ring text-[10px]"></i>
+        <span class="text-xs font-bold uppercase">Help Wanted</span>
         </div>
       </div>
-        
-        
-      </div>
-  </div>
-</div>
+        </div>
 
-  </section>
-<script src="./script/login.js"></script>
-<script src="./script/home.js"></script>
+        <div class="border-t border-gray-100 p-5 pt-4">
+          <p class="text-slate-400 text-sm">#1 by john_doe</p>
+          <p class="text-slate-400 text-sm mt-1">1/15/2024</p>
+        </div>
+      </div> -->
+    </section>
+  </main>
+
+  <script src="./script/home.js"></script>
+  <!-- <script src="./script/login.js"></script> -->
+
 </body>
 </html>
