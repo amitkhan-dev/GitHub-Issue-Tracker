@@ -95,10 +95,12 @@ card.onclick = () => {
     const modalContent = document.getElementById('modal-content');
     const modal = document.getElementById('issue_details_modal');
 
+    modalContent.className =` bg-base-100 shadow-sm border-t-4 rounded-md border-gray-100  ${borderColor}`
+
     modalContent.innerHTML = `
       <div class="flex items-center gap-4 mb-6">
         <div class="w-12 h-12 rounded-full ${data.status === 'open' ? 'bg-green-100' : 'bg-purple-100'} flex items-center justify-center">
-          <img src="${data.status === 'open' ? './assets/Open-Status.png' : './assets/Closed-Status.png'}" class="w-8">
+          <img src="${data.status === 'open' ?'./assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="">
         </div>
         <div>
           <h3 class="font-bold text-2xl text-slate-800">${data.title}</h3>
@@ -144,13 +146,17 @@ cardContaine.appendChild(card)
 const filterBtn = document.querySelectorAll('.filter-btn');
 filterBtn.forEach(btn => {
   btn.addEventListener('click', (e) => {
-    btn.classList.add('btn-soft');
+    filterBtn.forEach(singleBtn => {
+        singleBtn.classList.add('btn-soft'); 
+    });
     e.target.classList.remove('btn-soft');
     const status = e.target.innerText.toLowerCase();
     if( status === 'all'){
       loadDispaly(allIssuses);
       updateCount(allIssuses.length);
     }else{
+      
+
       const filtered = allIssuses.filter(item=> item.status === status);
       loadDispaly(filtered);
       updateCount(filtered.length);
@@ -161,12 +167,21 @@ filterBtn.forEach(btn => {
 
 searchInput.addEventListener('input', (e) => {
     const searchText = e.target.value.toLowerCase();
-    const searchedData = allIssuses.filter(issue => 
-        issue.title.toLowerCase().includes(searchText) || 
-        issue.description.toLowerCase().includes(searchText)
-    );
+
+    if (searchText === "") {
+        loadDispaly(allIssuses);
+        updateCount(allIssuses.length);
+        return; 
+    }
+
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchText}`)
+    .then(res => res.json())
+    .then(result => {
+    const searchedData = result.data; 
     loadDispaly(searchedData);
     updateCount(searchedData.length);
+  })
+        
 });
 
 loadIssue ();
