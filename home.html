@@ -46,9 +46,9 @@
   <main>
     <section class="w-10/12 mx-auto mb-5">
       <div class="navbar bg-base-100 rounded-lg shadow-sm gap-2">
-        <button id="btn-All" class=" filter-btn btn  btn-primary">All</button>
-        <button id="btn-open" class=" filter-btn btn btn-soft btn-primary">Open</button>
-        <button id="btn-closed" class="filter-btn btn btn-soft btn-primary">Closed</button>
+        <button onclick="filterIssue('all')" id="btn-All" class=" filter-btn btn  btn-primary">All</button>
+        <button onclick="filterIssue('open')" id="btn-open" class=" filter-btn btn btn-soft btn-primary">Open</button>
+        <button onclick="filterIssue('cloesd')" id="btn-closed" class="filter-btn btn btn-soft btn-primary">Closed</button>
       </div>
     </section>
 
@@ -57,7 +57,7 @@
         <div class="flex justify-between items-center gap-3">
           <img src="./assets/Aperture.png" alt="">
           <div>
-            <p id="issue-count" class="text-[20px] font-semibold">50 Issues</p>
+            <p id="issue-count" class="text-[20px] font-semibold">0 Issues</p>
             <p class="text-[#64748b]">Track and manage your project issues</p>
           </div>
         </div>
@@ -71,8 +71,8 @@
       
     </section>
 
-    <section class="w-10/12 mx-auto" >
-      <div id="card-container" class="w-10/12 mx-auto grid grid-cols-4 gap-3">
+    <section class="w-10/12 mx-auto " >
+      <div id="card-container" class=" grid grid-cols-4 gap-3">
 
       </div>
       <!-- card 1 -->
@@ -107,8 +107,24 @@
         <!-- loading spining -->
       <div id="loadingSpinner" class=" hidden h-[60vh] justify-center items-center mx-auto">
         <span class="loading loading-spinner text-secondary"></span>
-        <!-- <span class="loading loading-spinner loading-xl"></span> -->
       </div>
+
+      <!-- modal -->
+    
+      <!-- Open the modal using ID.showModal() method -->
+<button class="btn" onclick="my_modal_1.showModal()">open modal</button>
+<dialog id="my_modal_1" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
       
     </section>
     

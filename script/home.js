@@ -25,11 +25,18 @@ allIssuses = result.data;
 
 loadingSpinner.classList.add("hidden");
 loadingSpinner.classList.remove("flex");
+updateCount(allIssuses.length);
 loadDispaly(result.data);
-loadIssue (allIssuses);
+
+loadingSpinner.classList.add("hidden");
 
 
+}
 
+function updateCount (number){
+  const issueCount = document.getElementById('issue-count');
+  issueCount.innerText = `${number} Issues`;
+  
 }
 
 
@@ -46,7 +53,7 @@ function loadDispaly (issues){
   labelsHTML+= `
           <div  class="badge   ${label === 'bug' ? ' bg-red-100      text-red-500 ' : label === 'enhancement' ? 'bg-green-100    text-green-500':' bg-yellow-100 text-yellow-600'} gap-1 px-3 py-3">
           <i class="fa-solid ${label === 'bug' ? 'fa-bug' : label === 'enhancement' ? 'fa-star':'fa-life-ring'} "></i>
-          <span class="text-[6px] font-bold  uppercase">${label}</span>
+          <span class="text-[8px] font-bold  uppercase">${label}</span>
           </div>`;
 
 });
@@ -83,12 +90,38 @@ card.innerHTML=`
           <p class="text-slate-400 text-sm mt-1">${formattedDate}</p>
         </div>`
 
-        const btn =document.querySelectorAll('.filter-btn');
-        btn.onclick = ()=> selectissues (data.status)
-        console.log(btn)
 cardContaine.appendChild(card)
 });
 }
 
+// filtering btn
+
+const filterBtn = document.querySelectorAll('.filter-btn');
+filterBtn.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    btn.classList.add('btn-soft');
+    e.target.classList.remove('btn-soft');
+    const status = e.target.innerText.toLowerCase();
+    if( status === 'all'){
+      loadDispaly(allIssuses);
+      updateCount(allIssuses.length);
+    }else{
+      const filtered = allIssuses.filter(item=> item.status === status);
+      loadDispaly(filtered);
+      updateCount(filtered.length);
+    }
+  })
+})
+
+
+searchInput.addEventListener('input', (e) => {
+    const searchText = e.target.value.toLowerCase();
+    const searchedData = allIssuses.filter(issue => 
+        issue.title.toLowerCase().includes(searchText) || 
+        issue.description.toLowerCase().includes(searchText)
+    );
+    loadDispaly(searchedData);
+    updateCount(searchedData.length);
+});
 
 loadIssue ();
