@@ -22,8 +22,9 @@ async function loadDispaly (issues){
 // bug----
   let labelsHTML = ''; 
   data.labels.forEach(label => {
-  labelsHTML+= `<div  class="badge  ${label === 'bug' ? '  bg-red-100        text-red-500' : ' bg-yellow-100 text-yellow-600'} gap-1 px-3 py-3">
-    <span class="text-xs font-bold uppercase">${label}</span>
+  labelsHTML+= `<div  class="badge  ${label === 'bug' ? ' bg-red-100    text-red-500 ' : label === 'enhancement' ? 'bg-green-100    text-green-500':' bg-yellow-100 text-yellow-600'} gap-1 px-3 py-3">
+    <i class="fa-solid ${label === 'bug' ? 'fa-bug' : label === 'enhancement' ? 'fa-star':'fa-life-ring'} "></i>
+    <span class="text-[9px] font-bold  uppercase">${label}</span>
   </div>`;
 
 });
@@ -40,15 +41,15 @@ card.innerHTML=`
         <div class="p-5">
           <div class="flex justify-between  mb-3">
             <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-              <img src="${data.status === 'open' ?'./assets/Open-Status.png' : './assets/Closed-Status.png'}" alt="">
+              <img src="${data.status === 'open' ?'./assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="">
             </div>
             <span class="badge ${data.priority === 'high' ? 'bg-red-50 text-red-500': data.priority === 'medium'? 'bg-[#fff6d1] text-[#f59e0b]': 'bg-[#eeeff2] text-[#9ca3af]'}  font-bold text-xs px-3 py-3 uppercase">
             ${data.priority}</span>
           </div>
           <h2 class="text-slate-800 font-bold text-lg leading-tight mb-2">${data.title}</h2>
           <p class="text-slate-500 text-sm mb-4 line-clamp-2  ">${data.description}</p>
-          <div class="flex gap-2 mb-4">
-          <div class="badge  gap-2 px-3 py-3">${labelsHTML}
+          <div class="flex gap-1 mb-4">
+          <div class="badge  gap-1 px-2 py-3" text-[14px]>${labelsHTML}
           </div>
           </div>
         </div>
