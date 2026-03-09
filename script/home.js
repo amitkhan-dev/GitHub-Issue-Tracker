@@ -16,6 +16,7 @@ async function loadIssue (){
 // .then((data)=> console.log(data))
 // .catch((e)=> console.log(e));
 
+
 // asyn await
 
 const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
@@ -47,7 +48,7 @@ function loadDispaly (issues){
   issues.forEach(data => {
   // console.log(data);
 
-// bug----
+// bug ,enhancement filtering----
   let labelsHTML = ''; 
   data.labels.forEach(label => {
   labelsHTML+= `
@@ -67,6 +68,7 @@ function loadDispaly (issues){
   const card = document.createElement('div');
   card.className =`card  bg-base-100 shadow-sm border-t-4 border-gray-100  ${borderColor}`
 
+  // ----------card layout by dynamic---------------------------
 
 card.innerHTML=`
         <div class="p-5">
@@ -90,7 +92,7 @@ card.innerHTML=`
           <p class="text-slate-400 text-sm mt-1">${formattedDate}</p>
         </div>`
 
-// ------------modal-----------
+// ------------modal same as card format -----------
 card.onclick = () => {
     const modalContent = document.getElementById('modal-content');
     const modal = document.getElementById('issue_details_modal');
